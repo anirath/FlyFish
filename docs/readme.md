@@ -19,12 +19,12 @@ First you need to get your hands on [FlyFish][1] by either downloading a release
 above, or by cloning the [github repository][4]. Details for each can be found below:
 
 #### Release Download ####
-    - Pickup a release from [here][2].
-    - Unpack it using: `tar -xzf RELEASE_FILE` where *RELEASE_FILE* will point to the archive you downloaded.
+- Pickup a release from [here][2].
+- Unpack it using: `tar -xzf RELEASE_FILE` where *RELEASE_FILE* will point to the archive you downloaded.
     
 #### Clone GitHub Repository ####
-    - Clone the repository with `git clone https://github.com/anirath/FlyFish.git TARGET` where *TARGET* is
-    the folder you wish to clone it into.
+- Clone the repository with `git clone https://github.com/anirath/FlyFish.git TARGET` where *TARGET* is the
+folder you wish to clone it into.
     
 ### Installing FlyFish ###
 Now that you have the files you need install the project. There are two methods to achieve this. You can
