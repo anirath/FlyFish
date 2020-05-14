@@ -10,11 +10,14 @@
 # Autoloaded Function -- fish_right_prompt()
 # ==========================================
 function fish_right_prompt -d "Write out the right prompt"
+    # ------------------
+    # Function Variables
+    # ------------------
+    set -l is_git_repository (git rev-parse --is-inside-work-tree ^/dev/null)
+    set -l need_sep "false"
     # --------------
     # Git Repository
     # --------------
-    # Use a variable to detect if CWD is a git repository.
-    set -l is_git_repository (git rev-parse --is-inside-work-tree ^/dev/null)
     if test -n "$is_git_repository"
         # If the PWD is a git repository then print the git message and check the git status.
         set_color 999999; printf "[git:"
@@ -72,10 +75,29 @@ function fish_right_prompt -d "Write out the right prompt"
         set_color 999999; printf "]"; set_color normal
     end
     # --------------
-    # Python Segment
+    # Fish Scripting
     # --------------
-    if test (count *.py) -gt 0
-        # If any files with extension '.py' are present in the CWD then print out the Python Segment.
-        flyfish_separator; set_color -o green; printf "\U1F40D Python \U1F40D"; set_color normal
+    if test (count *.fish) -gt 0
+        if test -n "$is_git_repository"
+            flyfish_separator
+        end
+        # If any `fish` scripts exist then print this segment.
+        set_color -o cyan; printf "\U1F41F Fish \U1F41F"; set_color normal; set need_sep "true"
     end
+    # ------
+    # Python
+    # ------
+    if test (count *.py) -gt 0
+        if test -n "$is_git_repository"
+            or test "$need_sep" = "true"
+            flyfish_separator
+        end
+        # If any files with extension '.py' are present in the CWD then print out the Python Segment.
+        set_color -o green; printf "\U1F40D Python \U1F40D"; set_color normal; set -l is_python_project
+    end
+    # --------------
+    # Variable Reset
+    # --------------
+    set -e is_git_repository
+    set -e need_sep
 end
