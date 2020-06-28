@@ -1,1 +1,1 @@
-docs/readme.md
+docs/readme-github.md
